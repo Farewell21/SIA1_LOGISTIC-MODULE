@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<htm>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
+    <title>GG ERP</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=Etmhh6bmuqABUW7AuKaijfpnT9RTiz4iStiGM-rS0G2Z1MrUNQCDNu8HfGjegwfV4VWMC3um1jwkseDWatfbOQU1A6fULYtYVwqZpJW9acoMxa_PYh1U0CBo4Hx9CUp1M8bGRFu2H0gz_JTFqg6-p7HTgleMorK8lkB4JWIw817p1ASLUvXoxX-vxKmHufchnLzi7TlsWL8L2WwpWTrOc1d_GNDTcn7CloOkhYJDOCICfUVH-5y3x28_8WtHvQlS5RdoYu_Kuv1RQD20yUdd2fJeVoyYkLr9hpsiD_Nf572OT-DnXY08qYDWXHZ-JbIzDRxnK6q6a5UIUIYB77S9MseW_1ySEWb89tXsMneDGGELg2_PbP2rtefpZWQnMNfZOf0v1YlMMfGCw26L5nga8GA1dHtRbxqbTwZE_ZOb0cqzCgW8q-3JoDAHFwngn_RPRtefyBCl3Kk_Wy4bIa3zKwimW8f5gWOkQNGqAf0hosrhZbGkFR77Rpc9DTFo8FT9" charset="UTF-8"></script>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            margin: 0;
+            padding: 0;
+          background-color:#2D3252;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 20% 20% 40%;
+            gap: 0;
+            margin-top: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .column {
+            padding: 0px;
+            box-sizing: border-box;
+            margin-top: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .sidebar .logo{
+            padding: 10px;
+            padding-bottom: 10px;
+            width: 225px;
+            border-bottom: 2px solid #110f0f;
+        }
+        .sidebar .logo h1{
+            font-size: 31px;
+        }
+        .sidebar{
+            width: 245px;
+            height: 97vh;
+            background-color: #2D3252;
+            color: #B8B7B7;
+            padding: 10px;
+        }
+        .sidebar h1{
+            font-size: 31px;
+            font-weight: bold;
+            color: #FCFDFF;
+        }
+        .sidebar ul li{
+            list-style-type: none;
+            margin: 20px;
+            margin-top: 50px;
+        }
+        .sidebar ul li a{
+            color: #FEFEFE;
+            text-decoration: none;
+            font-size: 21px;
+            cursor: pointer;
+            transition: 0.1s ease;
+        }
+        .sidebar ul li a:hover {
+            color: white;
+            font-size: 21px;
+            text-decoration: underline;
+            border-radius: 50px;
+            padding: 10px;
+            margin: 10px;
+        }
+        .sidebar ul li.active a{
+            color: white;
+            font-size: 21px;
+            text-decoration: underline;
+            border-radius: 50px;
+            padding: 10px;
+            margin: 10px;
+        }
+        .profile{
+            padding: 30px;    
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            transform: translateX(-50%);
+            left: 120px;
+            width: 225px;
+            border-top: 3px solid #110f0f; 
+        }
+        .profile i {
+            font-size: 2em;
+            padding: 30px;
+            border-radius: 50%; 
+            border: 1px solid #FEFEFE;
+        }
+        .profile p{
+            margin-inline: 1px;
+            margin-top: 20px;
+        }
+        /*Sidebar*/
+
+        .content{
+            background-color: #56607B;
+            height: 97vh;
+            padding: 0;
+            margin-left: 0;
+            margin-top: 80px;
+        }
+        .content h2{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-inline: 1px;
+            margin-top: 70px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            padding: 20px;
+            width: 230px;
+            margin-top: 20px;
+        }
+        .dropbtn {
+            background-color: white;
+            color: rgb(36, 33, 33);
+            width: 130px;
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid rgb(36, 33, 33);
+            background-size: cover; 
+        }
+        .dropbtn i {
+            font-size: 16px;
+            padding: 5px;
+            border-left: 1px solid rgb(36, 33, 33);
+        }
+        .dropdown-content {
+        display: none; /* Initially hide the dropdown content */
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 130px;
+        margin-left: 50px;
+        margin-right: 50px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        }
+
+    .dropdown.show .dropdown-content {
+        display: block; 
+        }
+
+
+        .dropdown-content a {
+            color: #56607B;
+            padding: 9px 13px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            color: #F8B076;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #ededed;
+        }
+        .content{
+            height: 100vh;
+            margin-top: 0;
+        }
+        .limit{
+            width: 180px;
+            margin-left: 40px;
+            color: black;
+        }
+        .limit p{
+            font-weight: 500;
+      
+        }
+       
+        .with p{
+            font-size: 21px;
+            margin-top: 0;
+        }
+        .with h2{
+            margin-top: 10px;
+            margin-left: 30px;
+        }
+        .with i{
+            font-size: 120px;
+            margin-top: 0;
+        }
+        /*Content*/
+
+        .Load {
+            width: 150%; 
+            height: 100vh;
+            background-color: #2D3252;
+            color: #B8B7B7;
+        }
+        .Load h1{
+            margin-left: 20px;
+            font-size: 25px;
+            padding: 20px;
+            color: #FEFEFE;
+        }
+        .bar{
+            width: 80%;
+            height: 38vh;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: row;
+        }
+        .bar .bar1{
+            width: 15%;
+            height: 30vh;
+            display: flex;
+            justify-content: space-around;
+        }
+        .bar .bar1 p{
+            display: flex;
+            width: 48%;
+            height: 30vh;
+            background-color: #fefefe;
+        }
+        .bar .bar1 .bar1a{
+            margin-top: 99px;
+            height: 20vh;
+            background-color: #F8B076;
+        }
+        .bar .bar1 .bar2a{
+            margin-top: 124px;
+            height: 17vh;
+            background-color: #fefefe;
+        }
+        .bar .bar1 .bar2b{
+            height: 30vh;
+            background-color: #F8B076;
+        }
+        .bar .bar1 .bar3a{
+            margin-top: 115px;
+            height: 18vh;
+            background-color: #fefefe;
+        }
+        .bar .bar1 .bar3b{
+            margin-top: 35px;
+            height: 27.7vh;
+            background-color: #F8B076;
+        }
+        .bar .barinfo{
+            width: 10%;
+            height: 10vh;
+            right: 0;
+            position: absolute;
+            margin-top: 100px;
+            display: flex;
+            padding: 10px;
+            flex-direction: column;
+        }
+        .bar .barinfo{
+            font-size: 20px;
+        }
+        .bar .barinfo #DR{
+            color: #fefefe;
+            font-size: 30px;
+        }
+        .bar .barinfo #LT{
+            color: #F8B076;
+            font-size: 30px;
+        }
+        .month{
+            position: absolute;
+            width: 45%;
+            height: 10vh;
+            top: 355px;
+            display: flex;
+            flex-direction: row;
+        }
+        .month .a{
+            margin-left: 90px;
+        }
+        .month .b{
+            margin-left: 170px;
+        }
+        .month .c{
+            margin-left: 170px;
+        }
+        .costrav{
+            width: 100%;
+            height: 49.3vh;
+            font-size: 18px;
+        }
+        .costbar{
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+        .costbar h3{
+            padding: 10px 50px;
+        }
+        .costbar .costboxes{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            top: 0;
+        }
+        .costboxes .cost{
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+        .costboxes .cost p{
+            margin-top: 0;
+        }
+        .travel{
+            display: flex;
+            flex-direction: column;
+            font-size: 18px;
+        }
+        .travel h3{
+            padding: 10px 50px;
+        }
+        .travel .travelbox{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            top: 0;
+        }
+        .travelbox .cost{
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+        .deploy{
+            width: 25%;
+            height: 49.3vh;
+            display: flex;
+            margin-left: 20px;
+            justify-content: right;
+        
+        }
+        canvas{
+            color:#2D3252;
+            
+        }
+        .legend-indicator {
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .chart{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            
+        }
+
+        .Legends {
+            display: flex;
+            flex-direction: column;
+            align-items: right;
+            padding: 20px;
+
+        }
+
+        .Legends p {
+            font-size: 15px; 
+
+        }
+
+        .Legends #WL{
+            color: #448361;
+            font-size: 20px;
+        }
+
+        .Legends #OL{
+            color: #9f6b53;
+            font-size: 20px;
+        }
+
+        .Legends #ND{
+            color: #cb912f;
+            font-size: 20px;
+        }
+
+        .with {
+            background-color: #3d4886;
+            width: 200px;
+            height: 40vh;
+            color: #100f0f;
+            border-radius: 20px;
+            margin: 0 30px;
+            padding: 20px;
+            padding-left: 10px;
+            flex-basis: 30%;
+        }
+    </style>
+</head >
+<body >
+<div class="container">
+    <div class="column">
+        <div class="sidebar">
+            <div class="logo">
+                <h1><i class="fa-solid fa-truck-fast"></i> INFINITE<br>ERP</h1>
+            </div>
+            <ul>
+                <li class="active"><a href="Dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+                <li><a href="Order.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
+                <li><a href="Courier.html"><i class="fa-solid fa-people-carry-box"></i> Couriers</a></li>
+                <li><a href="Inventory.html"><i class="fa-solid fa-boxes-stacked"></i> Inventory</a></li>
+            </ul>
+            <div class="profile">
+                <p><i class="fa-solid fa-user"></i><br>ADMIN</p>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <h2>DELIVERY STATUS</h2>
+        <div class="dropdown">
+            <button class="dropbtn" id="dropdownButton">Today </button>
+            <div class="dropdown-content">
+                <a href="#">Today</a>
+                <a href="#">Hourly</a>
+                <a href="#">Weekly</a>
+                <a href="#">Monthly</a>
+                <a href="#">Yearly</a>
+            </div>
+        </div>
+        <div class="limit">
+            <p>Ongoing Delivery &nbsp; 75 <br>Delayed Delivery &nbsp; &nbsp;02
+                 <br>Not Delivered &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00</p>
+        </div>
+        <div class="with">
+            <div class="chart">
+                <canvas id="pie-chart" width="500" height="400"></canvas>
+            </div>
+            <div class="Legends">
+                <p><i class="fa-solid fa-square" id="WL"></i> Within the time limit</p>
+                <p><i class="fa-solid fa-square" id="OL"></i> Out of the time limit</p>
+                <p><i class="fa-solid fa-square" id="ND"></i> Not Delivered</p>
+            </div>
+        </div>
+       
+    </div>
+    <div class="Load">
+        <h1>LOAD ANALYSIS</h1>
+        <div class="bar">
+            <div class="bar1">
+                <p></p>
+                <p class="bar1a"></p>
+            </div>
+            <div class="bar1">
+                <p class="bar2a"></p>
+                <p class="bar2b"></p>
+            </div>
+            <div class="bar1">
+                <p class="bar3a"></p>
+                <p class="bar3b"></p>
+            </div>
+            <div class="barinfo">
+                <p><i class="fa-solid fa-square" id="DR"></i> Delivery Rate</p>
+                <p><i class="fa-solid fa-square" id="LT"></i> Loading Time</p>
+            </div>
+        </div>
+        <div class="month">
+            <p class="a">APR 2024</p>
+            <p class="b">MAY 2024</p>
+            <p class="c">JUN 2024</p>
+        </div>
+        <hr>
+        <div class="costrav">
+            <div class="costravbox">
+                <div class="costbar">
+                    <h3>COST</h3>
+                    <div class="costboxes">
+                        <div class="cost">
+                            <p>Average Delivered:</p>
+                            <h2>12.3%</h2>
+                        </div>
+                        <hr>
+                        <div class="cost">
+                            <p>Daily:</p>
+                            <h2>12, 320</h2>
+                        </div>
+                        <hr>
+                        <div class="cost">
+                            <p>Hourly:</p>
+                            <h2>12, 320, 329</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="travel">
+                    <h3>TRAVELED MILES</h3>
+                    <div class="travelbox">
+                        <div class="cost">
+                            <p>Average Delivered:</p>
+                            <h2>123 miles</h2>
+                        </div>
+                        <hr>
+                        <div class="cost">
+                            <p>Daily:</p>
+                            <h2>12, 520</h2>
+                        </div>
+                        <hr>
+                        <div class="cost">
+                            <p>Hourly:</p>
+                            <h2>12, 620, 229</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Initial data
+    let initialData = [30, 20, 50];
+    let pieChart;
+
+    // Function to initialize the chart
+    function initChart(data) {
+        let ctx = document.getElementById('pie-chart').getContext('2d');
+        pieChart = new Chart(ctx, {
+            type: 'doughnut', 
+            data: {
+                labels: ["Within the time limit", "Out of the time limit", "Not Delivered"],
+                datasets: [{
+                    data: data,
+                    backgroundColor: ["#448361", "#9f6b53", "#cb912f"]
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: false, 
+                },
+                cutout: '50%', // Adjust the size of the doughnut hole
+                tooltips: {
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.label || '';
+                            let value = context.formattedValue || '';
+                            let percentage = context.dataset.data[context.dataIndex];
+                            return `${label}: ${value} (${percentage}%)`;
+                        },
+                    },
+                },
+            },
+        });
+    }
+
+    // Function to update chart with new data and change dropdown button text
+    function updateChart(option) {
+        let newData;
+
+        switch (option) {
+            case 'Today':
+                newData = [80, 10, 40];
+                break;
+            case 'Hourly':
+                newData = [90, 10, 10];
+                break;
+            case 'Weekly':
+                newData = [70, 20, 5];
+                break;
+            case 'Monthly':
+                newData = [69, 15, 5];
+                break;
+            case 'Yearly':
+                newData = [90, 10, 5];
+                break;
+            default:
+                return;
+        }
+
+        // Update chart data
+        pieChart.data.datasets[0].data = newData;
+
+        // Update the chart
+        pieChart.update();
+
+        // Update dropdown button text
+        document.getElementById('dropdownButton').textContent = option;
+    }
+
+    // Initialize the chart with initial data
+    initChart(initialData);
+
+    // Add event listener to dropdown options
+    document.querySelectorAll('.dropdown-content a').forEach(item => {
+        item.addEventListener('click', event => {
+            let selectedOption = event.target.textContent.trim();
+            updateChart(selectedOption);
+        });
+    });
+
+    // Add event listener to dropdown button
+    document.getElementById('dropdownButton').addEventListener('click', function() {
+        this.nextElementSibling.classList.toggle('show');
+    });
+
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

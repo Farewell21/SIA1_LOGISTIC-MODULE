@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
+    <title>GG ERP</title>
+
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #56607B;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 17% 28% 25% 30%;
+            gap: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .column {
+            padding: 0px;
+            box-sizing: border-box;
+            margin-top: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .sidebar .logo {
+            padding: 10px;
+            padding-bottom: 10px;
+            width: 225px;
+            border-bottom: 2px solid #110f0f;
+        }
+
+        .sidebar .logo h1 {
+            font-size: 31px;
+        }
+
+        .sidebar {
+            width: 245px;
+            height: 97vh;
+            background-color: #2D3252;
+            color: #B8B7B7;
+            padding: 10px;
+        }
+
+        .sidebar h1 {
+            font-size: 31px;
+            font-weight: bold;
+            color: #FCFDFF;
+        }
+
+        .sidebar ul li {
+            list-style-type: none;
+            margin: 20px;
+            margin-top: 50px;
+        }
+
+        .sidebar ul li a {
+            color: #FEFEFE;
+            text-decoration: none;
+            font-size: 21px;
+            cursor: pointer;
+            transition: 0.1s ease;
+        }
+
+        .sidebar ul li a:hover {
+            color: white;
+            font-size: 21px;
+            text-decoration: underline;
+            border-radius: 50px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .sidebar ul li.active a {
+            color: white;
+            font-size: 21px;
+            text-decoration: underline;
+            border-radius: 50px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .profile {
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            transform: translateX(-50%);
+            left: 120px;
+            width: 225px;
+            border-top: 3px solid #110f0f;
+        }
+
+        .profile i {
+            font-size: 2em;
+            padding: 30px;
+            border-radius: 50%;
+            border: 1px solid #FEFEFE;
+        }
+
+        .profile p {
+            margin-inline: 1px;
+            margin-top: 20px;
+        }
+
+        /*Sidebar*/
+
+        .content {
+            background-color: rgb(43, 50, 75);
+            height: 100vh;
+        }
+
+        .head {
+            background-color: #ededed;
+            height: 22vh;
+            margin: 15px;
+            border-radius: 20px;
+        }
+
+        .content-head {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 7px;
+            margin: 20px;
+            font-size: 20px;
+            border-radius: 20px;
+        }
+
+        .content-head h2 {
+            margin-left: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            padding: 10px;
+            width: 3000px;
+            margin-left: 50px;
+            margin-top: 15px;
+        }
+
+        .dropbtn {
+            background-color: white;
+            color: rgb(36, 33, 33);
+            width: 150px;
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid rgb(36, 33, 33);
+            background-size: cover;
+        }
+
+        .dropbtn i {
+            font-size: 16px;
+            padding: 5px;
+            border-left: 1px solid rgb(36, 33, 33);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 140px;
+            margin-right: 110px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #56607B;
+            padding: 9px 13px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            color: #F8B076;
+        }
+
+        .dropdown:hover .dropdown-content,
+        .dropdown-content:hover {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #ededed;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .search-container input[type="text"] {
+            padding: 10px;
+            width: 65%;
+            background-color: #B8B7B7;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .search-container button[type="submit"] {
+            padding: 10px 30px;
+            background-color: #0739ff;
+            font-weight: bold;
+            border-radius: 0 5px 5px 0;
+            color: #110f0f;
+            cursor: pointer;
+        }
+
+        .search-container button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .order {
+            margin: 10px 20px;
+            border-radius: 20px;
+            background-color: #ffffff;
+        }
+
+        .order-active2 {
+            margin-top: -10px;
+            margin: 0 20px;
+            height: 21vh;
+            border-radius: 20px;
+            background-color: #FEFEFE;
+        }
+
+        .order1,
+        .order3,
+        .order4 {
+            text-decoration: none;
+        }
+
+        .order-active2 .ordertwo {
+            text-decoration: none;
+            margin: -10px 20px;
+            border-radius: 20px;
+            background: #FEFEFE;
+        }
+
+        .order1 p,
+        .ordertwo p,
+        .order3 p,
+        .order4 p {
+            margin-left: 80px;
+            margin-top: 0;
+            padding-bottom: 10px;
+            font-size: 20px;
+            color: #110f0f;
+        }
+
+        .order-active2 p,
+        .order p {
+            margin-left: 80px;
+            margin-top: 0;
+            padding-bottom: 10px;
+            font-size: 25px;
+        }
+
+        .orderON,
+        .orderOFF {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-size: 20px;
+            border-radius: 30px;
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        .orderON h4 {
+            color: #07b312;
+        }
+
+        .orderOFF h4 {
+            color: #b30707;
+        }
+
+        /*End of Content*/
+        .info-order1 {
+            width: 93%;
+            height: 70vh;
+            margin: 70px 20px;
+            background-color: #fefefe;
+        }
+
+        /*End of Orders*/
+        .location {
+            height: 100vh;
+            background-color: rgb(43, 50, 75);
+        }
+
+        .location a img {
+            width: 90%;
+            height: 40vh;
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .current {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 7px;
+            margin: 10px;
+            font-size: 20px;
+            border-radius: 20px;
+            background-color: #FCFDFF;
+        }
+
+        .package {
+            background-color: #FCFDFF;
+            padding: 7px;
+            margin: 10px;
+            height: 42vh;
+            padding: 5px;
+            border-radius: 20px;
+        }
+
+        .pp {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-size: 20px;
+            border-radius: 30px;
+            background-color: #FCFDFF;
+        }
+
+        .info-order {
+            width: auto;
+            height: auto;
+            margin: 70px 20px;
+            border-radius: 20px;
+            background-color: rgb(233, 226, 226);
+        }
+
+        .info-order::before {
+            content: "";
+            position: absolute;
+            left: 671px;
+            top: 420px;
+            display: flex;
+            width: 41px;
+            height: 30px;
+            background-color: rgb(233, 226, 226);
+        }
+
+        .locate {
+            padding: 1px 10px;
+        }
+
+        .locate h5 {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .locate h6 {
+            padding-left: 70px;
+            font-size: 15px;
+        }
+
+        .add::before {
+            content: "";
+            position: absolute;
+            left: 730px;
+            top: 190px;
+            display: flex;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: black;
+        }
+
+        .adds::before {
+            content: "";
+            position: absolute;
+            left: 730px;
+            top: 254px;
+            display: flex;
+            width: 20px;
+            height: 20px;
+            background-color: black;
+        }
+
+        .adds::after {
+            content: "";
+            position: absolute;
+            left: 730px;
+            top: 376px;
+            display: flex;
+            width: 20px;
+            height: 20px;
+            background-color: black;
+        }
+
+        .addd::before {
+            content: "";
+            position: absolute;
+            left: 730px;
+            top: 315px;
+            display: flex;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: black;
+        }
+
+        .add::after {
+            content: "";
+            position: absolute;
+            left: 730px;
+            top: 430px;
+            display: flex;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: black;
+        }
+
+        #aside {
+            background-color: #7C8497;
+            padding-top: 10px;
+            margin: 0 10px;
+            border-radius: 15px;
+        }
+
+        #aside .info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 20px;
+            font-size: 15px;
+        }
+
+        #aside .info1 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0 30px;
+        }
+
+        #aside .info1 div i {
+            font-size: 25px;
+            margin-right: 15px;
+        }
+
+        .info1 .prof {
+            padding: 0;
+            margin: 0;
+        }
+
+        .info1 .infofirst {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .info1 .infofirst i {
+            background-color: rgb(255, 250, 250);
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            margin-right: 5px;
+        }
+
+        .info1 .infofirst p {
+            margin-top: 0;
+        }
+
+        .detail {
+            background-color: #7C8497;
+            padding: 0 20px;
+            margin: 10px 10px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="column">
+            <div class="sidebar">
+                <div class="logo">
+                    <h1><i class="fa-solid fa-truck-fast"></i> INFINITE<br>ERP</h1>
+                </div>
+                <ul>
+                    <li><a href="Dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+                    <li class="active"><a href="Order.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
+                    <li><a href="Courier.html"><i class="fa-solid fa-people-carry-box"></i> Couriers</a></li>
+                    <li><a href="Inventory.html"><i class="fa-solid fa-boxes-stacked"></i> Inventory</a></li>
+                </ul>
+                <div class="profile">
+                    <p><i class="fa-solid fa-user"></i><br>ADMIN</p>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="head">
+                <div class="content-head">
+                    <h2>ORDERS</h2>
+                    <div class="dropdown">
+                        <button class="dropbtn">ALL &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <i
+                                class="fa-solid fa-angle-down"></i></button>
+                        <div class="dropdown-content">
+                            <a class="a" href="Weekly.html"> Display Alphabetically</a>
+                            <a class="a" href="Hourly.html"> Display By Status</a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="search-container">
+                    <input type="text" placeholder="Search by number, name...">
+                    <button type="submit">Search</button>
+                </div>
+            </div>
+            <div class="Orders">
+                <div class="order">
+                    <a class="order1" href="Order1.html">
+                        <div class="orderON">
+                            <h4>DJSGSHS3323</h4>
+                            <h4>ON WAY</h4>
+                        </div>
+                        <p>LAPTOP (HP)</p>
+                    </a>
+                </div>
+                <div class="order-active2">
+                    <a class="ordertwo" href="Order2.html">
+                        <div class="orderON">
+                            <h4>DBTK2024</h4>
+                            <h4>ON WAY</h4>
+                        </div>
+                        <p>PORTABLE KEYBOARD</p>
+                    </a>
+                </div>
+                <div class="order">
+                    <a class="order3" href="Order3.html">
+                        <div class="orderOFF">
+                            <h4>WISWDDD20314</h4>
+                            <h4>DELAYED</h4>
+                        </div>
+                        <p>iPAD PRO</p>
+                    </a>
+                </div>
+                <div class="order">
+                    <a class="order4" href="Order4.html">
+                        <div class="orderON">
+                            <h4>TARAGIS2024</h4>
+                            <h4>ON WAY</h4>
+                        </div>
+                        <p>PORTABLE MOUSE</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="info-order">
+            <section class="locate">
+                <h5>INTERENARY AND DRIVER DETAILS</h5>
+                <h6 class="add">From on 02, May<br>Magsaysay Avenue</h6>
+                <h6 class="addd">Right Now<br>Zone 3, December Avenue</h6>
+                <h6 class="adds">Tinambac</h6>
+                <h6>Mango Street</h6>
+                <h6>Diego Street</h6>
+            </section>
+
+            <aside id="aside">
+                <div class="info1">
+                    <div class="infofirst"><i class="fa-solid fa-user"></i>
+                        <p id="EmployeeFullName"><br></p>
+                    </div>
+                    <div><i class="fa-solid fa-comment-dots"></i><i class="fa-solid fa-square-phone"></i></div>
+                </div>
+                <div class="info">
+                    <p>Address: </p>
+                    <p id="employeeAddress"></p>
+                </div>
+                <div class="info">
+                    <p>Email: </p>
+                    <p id="employeeEmail"></p>
+                </div>
+            </aside>
+
+            <aside class="detail">
+                <p>The portable keyboard is a convenient and compact device for typing on the go, without unnecessary
+                    noise.</p>
+            </aside>
+
+        </div>
+
+        <div class="location">
+            <a href="#"><img src="location.jpg"></a>
+            <div class="current">
+                <p>Current Location<br>Naga City</p>
+                <p>Last Stop<br>2 hrs ago</p>
+                <p>Speed<br>60km/h</p>
+                <p>Distance<br>120/180km/s</p>
+            </div>
+            <div class="package">
+                <div class="pp">
+                    <p>Package and Pricing</p>
+                    <p>DBTK2024</p>
+                    <P>ON WAY</P>
+                </div>
+                <div class="pp">
+                    <p>2 May 2024, 9:30 AM</p>
+                    <hr>
+                    <p>4 May 2024, 10:40 AM</p>
+                </div>
+                <div class="pp">
+                    <p>Package Type<br>Light Container</p>
+                    <p>Weight<br>0.1kg</p>
+                    <p>Stops/Distance<br>4/140kms</p>
+                </div>
+                <div class="pp">
+                    <p>Total Price<br>1, 300 pesos</p>
+                    <p>Driver Fee<br>200 pesos</p>
+                    <p>System Fee<br>50 pesos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="scriptArr7.js"></script>
+</body>
+
+</html>

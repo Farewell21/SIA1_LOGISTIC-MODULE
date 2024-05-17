@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.2/css/all.css">
+    <title>GG ERP</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #56607B;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 20% 20% 40%;
+            gap: 0;
+            margin-top: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .column {
+            padding: 0px;
+            box-sizing: border-box;
+            margin-top: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .sidebar .logo {
+            padding: 10px;
+            padding-bottom: 10px;
+            width: 225px;
+            border-bottom: 2px solid #110f0f;
+        }
+
+        .sidebar .logo h1 {
+            font-size: 31px;
+        }
+
+        .sidebar {
+            width: 245px;
+            height: 97vh;
+            background-color: #2D3252;
+            color: #B8B7B7;
+            padding: 10px;
+        }
+
+        .sidebar h1 {
+            font-size: 31px;
+            font-weight: bold;
+            color: #FCFDFF;
+        }
+
+        .sidebar ul li {
+            list-style-type: none;
+            margin: 20px;
+            margin-top: 50px;
+        }
+
+        .sidebar ul li a {
+            color: #FEFEFE;
+            text-decoration: none;
+            font-size: 21px;
+            cursor: pointer;
+            transition: 0.1s ease;
+        }
+
+        .sidebar ul li a:hover {
+            color: white;
+            font-size: 21px;
+            text-decoration: underline;
+            border-radius: 50px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .sidebar ul li.active a {
+            color: white;
+            font-size: 21px;
+            text-decoration: underline;
+            border-radius: 50px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .profile {
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            transform: translateX(-50%);
+            left: 120px;
+            width: 225px;
+            border-top: 3px solid #110f0f;
+        }
+
+        .profile i {
+            font-size: 2em;
+            padding: 30px;
+            border-radius: 50%;
+            border: 1px solid #FEFEFE;
+        }
+
+        .profile p {
+            margin-inline: 1px;
+            margin-top: 20px;
+        }
+
+        .content {
+            padding: 0;
+            margin: 0;
+        }
+
+        .content .vd {
+            margin: 10px;
+            padding: 10px;
+            display: flex;
+            color: #fefefe;
+            justify-content: center;
+            text-align: center;
+            font-size: 21px;
+        }
+
+        .content .vd i {
+            font-size: 5rem;
+            color: black;
+        }
+
+        .content h1 {
+            margin-left: 10px;
+            font-size: 23px;
+            color: #ffffff;
+        }
+
+        .content ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .content ul li {
+            padding: 5px 5px;
+            margin: 10px;
+            margin-right: 20px;
+            font-size: 20px;
+            background-color: #FEFEFE;
+        }
+
+        .content ul i {
+            font-size: 1.5rem;
+        }
+
+        .content ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .content .tv {
+            background-color: #dbdbdc;
+            padding: 1px;
+            font-size: 18px;
+            width: 220px;
+            margin-top: 70px;
+            border-radius: 50px;
+            display: flex;
+            color: #111111;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .Use {
+            width: 150%;
+            height: 100vh;
+            background-color: #2D3252;
+            color: #100f0f;
+        }
+
+        .MUV {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            background-color: #2D3252;
+            color: #100f0f;
+        }
+
+        .MUV h2 {
+            text-align: center;
+            font-size: 30px;
+            color: #dbdbdc;
+        }
+
+        .MUV2 {
+            display: flex;
+            flex-direction: row;
+            margin-left: 190px;
+            margin-top: -20px;
+        }
+
+        .MUV2 .table1,
+        .MUV2 .table2 {
+            background-color: #009494;
+            color: #100f0f;
+            border-radius: 20px;
+            margin: 0 10px;
+            padding: 20px;
+            flex-basis: 30%;
+        }
+
+        .OTM {
+            width: 100%;
+            height: 64vh;
+            margin-top: 2px;
+            background-color: #2D3252;
+        }
+
+        .OTM .Vehicle {
+            justify-content: center;
+            display: flex;
+            text-align: center;
+            color: #dbdbdc;
+        }
+
+        .box1 {
+            background-color: #dbdbdc;
+            margin: 0 100px 30px;
+            padding: 20px;
+            border-radius: 40px;
+            font-size: large;
+        }
+
+        .box2 {
+            background-color: #dbdbdc;
+            margin: 0 100px 30px;
+            padding: 20px;
+            border-radius: 40px;
+            font-size: large;
+        }
+
+        .box3 {
+            background-color: #dbdbdc;
+            margin: 0 100px 30px;
+            padding: 20px;
+            border-radius: 40px;
+            font-size: large;
+        }
+
+        .icon {
+            font-size: 40px;
+            margin: 10px;
+        }
+
+        .Legends #T {
+            color: #007bff;
+            font-size: 20px;
+        }
+
+        .Legends #V {
+            color: #28a745;
+            font-size: 20px;
+        }
+
+        .Legends #M {
+            color: #23d444;
+            font-size: 20px;
+        }
+
+        .Legends #WL {
+            color: #007bff;
+            font-size: 20px;
+        }
+
+        .Legends #OL {
+            color: #28d745;
+            font-size: 20px;
+        }
+
+        .Legends #ND {
+            color: #23d4d4;
+            font-size: 20px;
+        }
+
+        .table1{
+            padding-left: -130px;
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="column">
+        <div class="sidebar">
+            <div class="logo">
+                <h1><i class="fa-solid fa-truck-fast"></i> INFINITE<br>ERP</h1>
+            </div>
+            <ul>
+                <li><a href="Dashboard.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+                <li><a href="Order.html"><i class="fa-solid fa-cart-shopping"></i> Orders</a></li>
+                <li class="active"><a href="Courier.html"><i class="fa-solid fa-people-carry-box"></i> Couriers</a></li>
+                <li><a href="Inventory.html"><i class="fa-solid fa-boxes-stacked"></i> Inventory</a></li>
+            </ul>
+            <div class="profile">
+                <p><i class="fa-solid fa-user"></i><br>ADMIN</p>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="vd">
+            <h2><i class="fa-solid fa-car"></i><br><a href="Courier.html" style="text-decoration: none; color: #fefefe;">Vehicle Deployment</a></h2>
+        </div>
+        <h1>Type of Vehicle</h1>
+        <ul>
+            <li><a href="Truck.html"><i class="fa-solid fa-truck"></i> Truck</a></li>
+            <li><a href="Van.html"><i class="fa-solid fa-truck-front"></i> Van</a></li>
+            <li><a href="Motorcycle.html" id="motorcycle-link"><i class="fa-solid fa-moped"></i> Motorcycle</a></li>
+
+        </ul>
+        <div class="tv">
+            <p>Total Vehicles: 143</p>
+        </div>
+    </div>
+    <div class="Use">
+        <div class="MUV">
+            <h2>MOST USED VEHICLE</h2>
+            <div class="MUV2">
+                <div class="table1">
+                    <div class="Legends">
+                        <p><i class="fa-solid fa-square" id="T"></i> Truck</p>
+                        <p><i class="fa-solid fa-square" id="V"></i> Van</p>
+                        <p><i class="fa-solid fa-square" id="M"></i> Motorcycle</p>
+                    </div>
+                    <div class="icon1">
+                        <canvas id="mostUsedVehicleChart" width="200" height="200"></canvas>
+                    </div>
+                </div>
+                <div class="table2">
+                    <div class="Legends">
+                        <p><i class="fa-solid fa-square" id="WL"></i> On the move</p>
+                        <p><i class="fa-solid fa-square" id="OL"></i> Under Maintenance</p>
+                        <p><i class="fa-solid fa-square" id="ND"></i> Unavailable</p>
+                    </div>
+                    <div class="icon2">
+                        <canvas id="VehicleStatus" width="200" height="200"></canvas>
+                    </div>
+                </div>
+           
+        </div>
+        <div class="OTM">
+            <div class="Vehicle">
+                <h2>ON THE MOVE VEHICLE</h2>
+            </div>
+            <div class="box1">
+                <table>
+                    <tr>
+                        <td>Type: Truck <br>Drivers Name: Christian David Cano</td>
+                        <td>ID: TR-2424</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="box2">
+                <table>
+                    <tr>
+                        <td>Type: Van <br>Drivers Name: Randell Ariola</td>
+                        <td>ID: VN-2424</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="box3">
+                <table>
+                    <tr>
+                        <td>Type: Motorcycle <br>Drivers Name: Mark Andrew Fria Olala</td>
+                        <td>ID: MC-2424</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript for most used vehicle chart
+    const mostUsedVehicleData = {
+        labels: ['Truck', 'Van', 'Motorcycle'],
+        datasets: [{
+            label: 'Usage Percentage',
+            data: [70, 20, 10],
+            backgroundColor: ['#007bff', '#28a745', '#23d444'],
+        }]
+    };
+
+    const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                display: true 
+            },
+            plugins: {
+                legend: {
+                    display: false 
+                },
+                tooltip: {
+                    enabled: true 
+                }
+            }
+        };
+    
+
+    const mostUsedVehicleCtx = document.getElementById('mostUsedVehicleChart').getContext('2d');
+
+    new Chart(mostUsedVehicleCtx, {
+        type: 'doughnut',
+        data: mostUsedVehicleData,
+        options: options
+    });
+
+    // JavaScript for vehicle status chart
+    const VehicleStatusData = {
+        labels: ['On the Move', 'Under Maintenance', 'Unavailable'],
+        datasets: [{
+            label: 'Usage Percentage',
+            data: [70, 20, 10],
+            backgroundColor: ['#007bff', '#28d745', '#23d4d4'],
+        }]
+    };
+
+    const VehicleStatusCtx = document.getElementById('VehicleStatus').getContext('2d');
+
+    new Chart(VehicleStatusCtx, {
+        type: 'doughnut',
+        data: VehicleStatusData,
+        options: options
+    });
+</script>
+</body>
+</html>
